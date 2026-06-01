@@ -45,15 +45,13 @@
                         document.documentElement.classList.remove('dark-theme');
                     }
                 };
-                document.addEventListener("DOMContentLoaded",()=>{
-                    applyColorTheme();
-                    if(sessionStorage.getItem("redirectPath")){
-                        sessionStorage.removeItem("redirectPath");
-                    }
-                    if(window.location.pathname!=="/"){
-                        window.history.replaceState(null,null,"/");
-                    }
-                });
+                applyColorTheme();
+                if(sessionStorage.getItem("redirectPath")){
+                    sessionStorage.removeItem("redirectPath");
+                }
+                if(window.location.pathname!=="/"){
+                    window.history.replaceState(null,null,"/");
+                }
                 window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyColorTheme);
             }());
         </script>
