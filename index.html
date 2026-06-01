@@ -5,9 +5,8 @@
         <style>
             *{font-family:"Roboto",sans-serif;margin:0;overscroll-behavior-block:none;padding:0;text-align:center;}
             :root{--bg-color:#ffffff;--link-color:#0055cc;--text-color:#000000;}
-            @media(prefers-color-scheme:dark){:root{--bg-color:#1e1e1e;--link-color:#3b99ec;--text-color:#c8c8c8;}}
-            .dark-theme{--bg-color:#1e1e1e;--link-color:#3b99ec;--text-color:#c8c8c8;}
-            body{background-color:var(--bg-color);color:var(--text-color);}
+            :root.dark-theme{--bg-color:#1e1e1e;--link-color:#3b99ec;--text-color:#c8c8c8;}
+            body{background-color:var(--bg-color);color:var(--text-color);transition:background-color 0.2s,color 0.2s;}
             a{color:var(--link-color);font-size:1.11rem;padding:20px 10px;}
             h1{font-size:3.9rem;font-weight:500}
             h2{font-size:1.2rem;font-weight:400;padding-top:50px;}
@@ -15,6 +14,23 @@
             @media(max-width:710px){h1{font-size:3.2rem;}h2{font-size:1.1rem;}a{font-size:1.05rem};#home-container{margin-top:115px;}}
             #links-div{align-items:center;display:flex;flex-direction:row;gap:5px;margin-top:30px;& span{line-height:1;opacity:0.4;}}
         </style>
+        <script>
+            var applyColorTheme=()=>{
+                var hour=new Date().getHours();
+                var isNight=hour<5||hour>=20;
+                var prefersDark=window.matchMedia('(prefers-color-scheme:dark)').matches;
+                var prefersLight=window.matchMedia('(prefers-color-scheme:light)').matches;
+                if(prefersLight){
+                    document.documentElement.classList.remove('dark-theme');
+                }else if(prefersDark||isNight){
+                    document.documentElement.classList.add('dark-theme');
+                }else{
+                    document.documentElement.classList.remove('dark-theme');
+                }
+            };
+            applyColorTheme();
+            window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyColorTheme);
+        </script>
     </head>
     <body>
         <section id="home-container">
@@ -38,21 +54,6 @@
                 if(window.location.pathname!=="/"){
                     window.history.replaceState(null,null,"/");
                 }
-                var applyColorTheme=()=>{
-                    var hour=new Date().getHours();
-                    var isNight=hour<5||hour>=20;
-                    var prefersDark=window.matchMedia('(prefers-color-scheme:dark)').matches;
-                    var prefersLight=window.matchMedia('(prefers-color-scheme:light)').matches;
-                    if(prefersLight){
-                        document.documentElement.classList.remove('dark-theme');
-                    }else if(prefersDark||isNight){
-                        document.documentElement.classList.add('dark-theme');
-                    }else{
-                        document.documentElement.classList.remove('dark-theme');
-                    }
-                };
-                applyColorTheme();
-                window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyColorTheme);
             }());
         </script>
     </body>
