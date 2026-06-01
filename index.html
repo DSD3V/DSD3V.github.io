@@ -32,6 +32,12 @@
         </section>
         <script>
             (function(){
+                if(sessionStorage.getItem("redirectPath")){
+                    sessionStorage.removeItem("redirectPath");
+                }
+                if(window.location.pathname!=="/"){
+                    window.history.replaceState(null,null,"/");
+                }
                 var applyColorTheme=()=>{
                     var hour=new Date().getHours();
                     var isNight=hour<5||hour>=20;
@@ -46,12 +52,6 @@
                     }
                 };
                 applyColorTheme();
-                if(sessionStorage.getItem("redirectPath")){
-                    sessionStorage.removeItem("redirectPath");
-                }
-                if(window.location.pathname!=="/"){
-                    window.history.replaceState(null,null,"/");
-                }
                 window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyColorTheme);
             }());
         </script>
