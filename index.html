@@ -17,13 +17,9 @@
         <script>
             var applyColorTheme=()=>{
                 var hour=new Date().getHours();
-                if(window.matchMedia('(prefers-color-scheme:light)').matches){
-                    document.documentElement.classList.remove('dark-theme');
-                }else if(window.matchMedia('(prefers-color-scheme:dark)').matches||hour<5||hour>=20){
-                    document.documentElement.classList.add('dark-theme');
-                }else{
-                    document.documentElement.classList.remove('dark-theme');
-                }
+                if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.classList.remove('dark-theme');}
+                else if(window.matchMedia('(prefers-color-scheme:dark)').matches||hour<5||hour>=20){document.documentElement.classList.add('dark-theme');}
+                else{document.documentElement.classList.remove('dark-theme');}
             };
             applyColorTheme();
             window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyColorTheme);
@@ -45,12 +41,8 @@
         </section>
         <script>
             (function(){
-                if(sessionStorage.getItem("redirectPath")){
-                    sessionStorage.removeItem("redirectPath");
-                }
-                if(window.location.pathname!=="/"){
-                    window.history.replaceState(null,null,"/");
-                }
+                if(sessionStorage.getItem("redirectPath")){sessionStorage.removeItem("redirectPath");}
+                if(window.location.pathname!=="/"){window.history.replaceState(null,null,"/");}
             }());
         </script>
     </body>
