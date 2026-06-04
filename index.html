@@ -17,12 +17,9 @@
         <script>
             var applyColorTheme=()=>{
                 var hour=new Date().getHours();
-                var isNight=hour<5||hour>=20;
-                var prefersDark=window.matchMedia('(prefers-color-scheme:dark)').matches;
-                var prefersLight=window.matchMedia('(prefers-color-scheme:light)').matches;
-                if(prefersLight){
+                if(window.matchMedia('(prefers-color-scheme:light)').matches){
                     document.documentElement.classList.remove('dark-theme');
-                }else if(prefersDark||isNight){
+                }else if(window.matchMedia('(prefers-color-scheme:dark)').matches||hour<5||hour>=20){
                     document.documentElement.classList.add('dark-theme');
                 }else{
                     document.documentElement.classList.remove('dark-theme');
