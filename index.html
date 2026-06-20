@@ -41,8 +41,11 @@
         </section>
         <script>
             (function(){
-                if(sessionStorage.getItem("redirectPath")){sessionStorage.removeItem("redirectPath");}
-                if(window.location.pathname!=="/"){window.history.replaceState(null,null,"/");}
+                if(sessionStorage.getItem("redirectPath"))sessionStorage.removeItem("redirectPath");
+                var path=window.location.pathname;
+                if(path.toLowerCase().startsWith("/cellular-automata-simulator")){
+                    if(path!=="/cellular-automata-simulator")window.history.replaceState(null,null,"/cellular-automata-simulator");
+                }else if(path!=="/")window.history.replaceState(null,null,"/");
             }());
         </script>
     </body>
