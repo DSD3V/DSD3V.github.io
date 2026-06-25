@@ -7,12 +7,13 @@
             :root{--bg-color:#ffffff;--link-color:#0055cc;--text-color:#000000;}
             :root.dark-theme{--bg-color:#1e1e1e;--link-color:#3b99ec;--text-color:#c8c8c8;}
             body{background-color:var(--bg-color);color:var(--text-color);transition:background-color 0.2s,color 0.2s;}
-            a{color:var(--link-color);font-size:1.11rem;padding:20px 10px;}
+            a{color:var(--link-color);font-size:1.11rem;}
             h1{font-size:3.9rem;font-weight:500}
-            h2{font-size:1.2rem;font-weight:400;padding-top:50px;}
+            h2{font-size:1.2rem;font-weight:400;max-width:80%;padding-top:50px;}
             #home-container{align-items:center;display:flex;flex-direction:column;justify-content:center;margin:170px auto 0 auto;width:85%;}
             @media(max-width:710px){h1{font-size:3.2rem;}h2{font-size:1.1rem;}a{font-size:1.05rem};#home-container{margin-top:115px;}}
-            #links-div{align-items:center;display:flex;flex-direction:row;gap:5px;margin-top:30px;& span{line-height:1;opacity:0.4;}}
+            #links-div{align-items:center;display:flex;flex-direction:row;gap:5px;margin-top:30px;}
+            span{line-height:1;opacity:0.4;padding:20px 10px;}
         </style>
         <script>
             var applyColorTheme=()=>{
@@ -28,7 +29,7 @@
     <body>
         <section id="home-container">
             <h1>David Sordia</h1>
-            <h2>AI Engineering Apprentice</h2>
+            <h2>Full-Stack Software Engineering<span>•</span>AI & Data Science</h2>
             <div id="links-div">
                 <a href="https://github.com/dsd3v"rel="noopener noreferrer"target="_blank">
                     GitHub ↗
