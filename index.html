@@ -16,6 +16,11 @@
             span{line-height:1;opacity:0.4;padding:20px 10px;}
         </style>
         <script>
+            sessionStorage.removeItem('redirectPath');
+            var path=location.pathname;
+            if(path.toLowerCase().startsWith('/cellular-automata-simulator')){
+                if(path!=='/cellular-automata-simulator')history.replaceState(null,'','/cellular-automata-simulator');
+            }else if(path!=='/')history.replaceState(null,'','/');
             var applyColorTheme=()=>{
                 var hour=new Date().getHours();
                 if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.classList.remove('dark-theme');}
@@ -27,7 +32,7 @@
         </script>
     </head>
     <body>
-        <section id="home-container">
+        <main id="home-container">
             <h1>David Sordia</h1>
             <h2>Full-Stack Software Engineering<span>•</span>AI & Data Science</h2>
             <div id="links-div">
@@ -39,15 +44,6 @@
                     LinkedIn ↗
                 </a>
             </div>
-        </section>
-        <script>
-            (function(){
-                if(sessionStorage.getItem('redirectPath'))sessionStorage.removeItem('redirectPath');
-                var path=window.location.pathname;
-                if(path.toLowerCase().startsWith('/cellular-automata-simulator')){
-                    if(path!=='/cellular-automata-simulator')window.history.replaceState(null,null,'/cellular-automata-simulator');
-                }else if(path!=='/')window.history.replaceState(null,null,'/');
-            }());
-        </script>
+        </main>
     </body>
 </html>
