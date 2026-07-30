@@ -21,14 +21,17 @@
             if(path.toLowerCase().startsWith('/cellular-automata-simulator')){
                 if(path!=='/cellular-automata-simulator')history.replaceState(null,'','/cellular-automata-simulator');
             }else if(path!=='/')history.replaceState(null,'','/');
-            var applyColorTheme=()=>{
+            var darkMedia=window.matchMedia('(prefers-color-scheme:dark)');
+            var lightMedia=window.matchMedia('(prefers-color-scheme:light)');
+            function applyColorTheme() {
                 var hour=new Date().getHours();
-                if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.classList.remove('dark-theme');}
-                else if(window.matchMedia('(prefers-color-scheme:dark)').matches||hour<5||hour>=20){document.documentElement.classList.add('dark-theme');}
-                else{document.documentElement.classList.remove('dark-theme');}
-            };
+                var isDark=false;
+                if(!lightMedia.matches&&(darkMedia.matches||(hour < 5||hour >= 20))){isDark=true;}
+                document.documentElement.classList.toggle('dark-theme',isDark);
+                document.documentElement.style.colorScheme=isDark?'dark':'light';
+            }
             applyColorTheme();
-            window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',applyColorTheme);
+            darkMedia.addEventListener('change',applyColorTheme);
         </script>
     </head>
     <body>
